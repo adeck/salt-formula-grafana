@@ -147,7 +147,7 @@ def present(name,
 
 def absent(name, profile='grafana'):
     '''
-    Ensure that a data source is present.
+    Ensure that a data source is absent.
 
     name
         Name of the data source to remove.
@@ -163,6 +163,7 @@ def absent(name, profile='grafana'):
         ret['comment'] = 'Data source {0} already absent'.format(name)
         return ret
 
+    # TODO -- actually check HTTP return code to see if successful
     requests.delete(
         _get_url(profile, datasource['id']),
         auth=_get_auth(profile),
